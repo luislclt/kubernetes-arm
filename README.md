@@ -10,8 +10,11 @@ To follow the original full article published on: https://medium.com/@carlosedp/
 # Network
 
 Network: 192.168.1.0/24
+
 Gateway: 192.168.1.254
+
 DNS: 192.168.1.254
+
 Router DHCP range: 192.168.1.20 - 192.168.1.200
 
 Reserved: 192.168.1.2 - 192.168.1.19
@@ -29,5 +32,6 @@ MetalLB CIDR: (14)
 
 
 Traefik Internal Ingress IP: 192.168.1.245
+
 Traefik External Ingress IP: 192.168.1.246
 
