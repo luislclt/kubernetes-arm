@@ -21,7 +21,7 @@ spec:
       port: 8080
       name: metrics
   type: LoadBalancer
-  loadBalancerIP: 192.168.1.21
+  loadBalancerIP: 192.168.1.246
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -32,7 +32,7 @@ metadata:
     traffic-type: internal
 spec:
   rules:
-  - host: traefik-ext.internal.carlosedp.com
+  - host: traefik-ext.internal.peviwatt.io
     http:
       paths:
       - path: /
