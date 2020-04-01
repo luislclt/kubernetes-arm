@@ -38,13 +38,13 @@ Traefik External Ingress IP: 192.168.1.246
 
 # Hosts on DNS or Local
 <!-- The configuration added to DNSMasq options on router: address=/.internal.domain.com/192.168.1.245 -->
-<!-- 192.168.1.245 application.internal.peviwatt.io -->
-192.168.1.245 dashboard.internal.peviwatt.io
-192.168.1.245 grafana.internal.peviwatt.io
-192.168.1.245 traefik.internal.peviwatt.io
-<!-- 192.168.1.245 traefik-ext.internal.peviwatt.io -->
-<!-- 192.168.1.246 consul.internal.peviwatt.io -->
-<!-- 192.168.1.246 dashboard.cloud.peviwatt.io -->
+<!-- - 192.168.1.245 application.internal.peviwatt.io -->
+- 192.168.1.245 dashboard.internal.peviwatt.io
+- 192.168.1.245 grafana.internal.peviwatt.io
+- 192.168.1.245 traefik.internal.peviwatt.io
+<!-- - 192.168.1.245 traefik-ext.internal.peviwatt.io -->
+<!-- - 192.168.1.246 consul.internal.peviwatt.io -->
+<!-- - 192.168.1.246 dashboard.cloud.peviwatt.io -->
 
 
 
