@@ -30,7 +30,7 @@ metadata:
   namespace: kube-system
 spec:
   rules:
-  - host: application.internal.peviwatt.io
+  - host: traefik.internal.peviwatt.io
     http:
       paths:
       - path: /
