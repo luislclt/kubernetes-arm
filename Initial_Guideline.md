@@ -155,11 +155,25 @@ MetalLB
 
  For installation and configuration, run the script `install_metallb.sh` and deploy the manifest `kubectl apply -f metallb-conf.yaml` from [1-MetalLB](https://github.com/luislclt/kubernetes-arm/tree/master/1-MetalLB).
 
+    cd 1-MetalLB
+    ./install_metallb.sh
+    kubectl apply -f metallb-conf.yaml
+
 Traefik 
 
  is and ingress controller that can act as a reverse proxy/loadbalancer on the service layer of Kubernetes.
 
  To create the service on Kubernetes, just run the scripts and run manifests on the [2-Traefik](https://github.com/luislclt/kubernetes-arm/tree/master/2-Traefik).
+
+    cd 2-Traefik/
+    ./deploy.sh
+
+Use the external directory to deploy an external Ingress controller to dynamically generate SSL certificates from LetsEncrypt. Check this [guide]()
+https://medium.com/@carlosedp/multiple-traefik-ingresses-with-letsencrypt-https-certificates-on-kubernetes-b590550280cf
+ dont FORGET TO MAKE THIS TUTORIAL FIRST, NOT RUN external DIRECTORY !!!
+ 
+     cd 2-Traefik/external
+     ./deploy.sh (do not run!!)
 
 
 ## Step 4 - Kubernetes storage
