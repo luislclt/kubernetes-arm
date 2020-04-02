@@ -180,9 +180,29 @@ https://medium.com/@carlosedp/multiple-traefik-ingresses-with-letsencrypt-https-
 
 Do not run for now, incompleted.
 
-[3-NFS_Storage](https://github.com/luislclt/kubernetes-arm/tree/master/3-NFS_Storage)
+NFS Server
 
-To be done.
+  As the Master Node serves also as the NFS server for persistent storage.
+
+    Run only on Rock64Master1
+    
+    sudo apt-get install nfs-kernel-server nfs-common
+    sudo systemctl enable nfs-kernel-server
+    sudo systemctl start nfs-kernel-server
+    
+    sudo cat >> /etc/exports <<EOF
+    /data/kubernetes-storage/ 192.168.1.*(rw,sync,no_subtree_check,no_root_squash)
+    EOF
+    
+    sudo exportfs -a
+
+NFS Storageclass
+
+   In the [3-NFS_Storage](https://github.com/luislclt/kubernetes-arm/tree/master/3-NFS_Storage) directory are the manifests to deploy a NFS controller to provide dynamic Persistent Volumes.
+   
+    cd 3-NFS_Storage
+    ./deploy.sh
+
 
 ## Dashboard, heapster and InfluxDB
 
