@@ -1,3 +1,4 @@
+#Link: https://github.com/kubernetes-sigs/metrics-server/blob/master/deploy/kubernetes/metrics-server-deployment.yaml
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -29,14 +30,25 @@ spec:
         emptyDir: {}
       containers:
       - name: metrics-server
-        image: k8s.gcr.io/metrics-server-arm64:v0.3.1
-        command:
-          - /metrics-server
+        image: k8s.gcr.io/metrics-server-arm64:v0.3.6
+        imagePullPolicy: Always
+        args:
+          #- /metrics-server
+          #- --cert-dir=/tmp
+          #- --secure-port=4443
           - --kubelet-insecure-tls
           - --kubelet-preferred-address-types=InternalIP
-        imagePullPolicy: Always
+        #ports:
+        #- name: main-port
+        #  containerPort: 4443
+        #  protocol: TCP
+        securityContext:
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          runAsUser: 1000
         volumeMounts:
         - name: tmp-dir
           mountPath: /tmp
       nodeSelector:
-        beta.kubernetes.io/arch: arm64
+        kubernetes.io/os: linux
+        kubernetes.io/arch: "amd64"
