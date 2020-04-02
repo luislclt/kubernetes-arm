@@ -49,8 +49,8 @@ Do this again on the next node (Master1, Node1, Node2)
 
 Follow the official tutorial [Building an ARM Kubernetes Cluster](https://itnext.io/building-an-arm-kubernetes-cluster-ef31032636f9) but ensure to use all of the dedicated scripts and gidelines of this GitHub page.
 
-    - [Basic configuration](https://github.com/luislclt/kubernetes-arm/blob/master/Rock64_Install.md)
-    - [Install Docker/Kubernetes utilities](https://github.com/luislclt/kubernetes-arm/blob/master/install_container_service.sh)
+- [Basic configuration](https://github.com/luislclt/kubernetes-arm/blob/master/Rock64_Install.md)
+- [Install Docker/Kubernetes utilities](https://github.com/luislclt/kubernetes-arm/blob/master/install_container_service.sh)
 
 Configure DNS Domain or Static Hosts
 
@@ -133,17 +133,15 @@ Check if every node is connected and on the same version:
 
 MetalLB 
 
-    is the Kubernetes Load Balancer, check the official website [configurations](https://metallb.universe.tf/installation/).
+ is the Kubernetes Load Balancer, check the official website [configurations](https://metallb.universe.tf/installation/).
 
-    For installation and configuration, run the script `install_metallb.sh` and deploy the manifest `kubectl apply -f metallb-conf.yaml` from [1-MetalLB](https://github.com/luislclt/kubernetes-arm/tree/master/1-MetalLB).
+ For installation and configuration, run the script `install_metallb.sh` and deploy the manifest `kubectl apply -f metallb-conf.yaml` from [1-MetalLB](https://github.com/luislclt/kubernetes-arm/tree/master/1-MetalLB).
 
 Traefik 
 
-    is and ingress controller that can act as a reverse proxy/loadbalancer on the service layer of Kubernetes.
+ is and ingress controller that can act as a reverse proxy/loadbalancer on the service layer of Kubernetes.
 
-    To create the service on Kubernetes, just run the scripts and run manifests on the [2-Traefik](https://github.com/luislclt/kubernetes-arm/tree/master/2-Traefik).
-
-
+ To create the service on Kubernetes, just run the scripts and run manifests on the [2-Traefik](https://github.com/luislclt/kubernetes-arm/tree/master/2-Traefik).
 
 
 ## Kubernetes storage
@@ -170,12 +168,12 @@ To be done.
 ## Documentation/Support/Links
 
 Important and Official Tutorial links:
+    
     - [Building an ARM Kubernetes Cluster](https://itnext.io/building-an-arm-kubernetes-cluster-ef31032636f9)
     - [GitHub Kubernetes-arm Tutorial](https://github.com/carlosedp/kubernetes-arm)
     - [Rock64 Install (Adjust IPs/Hostnames/DNS to your deployment)](https://gist.github.com/carlosedp/4df3cd58a489a3c4022f97a474439b90)
     - [Install Docker/Kubernetes script](https://gist.github.com/carlosedp/0e72aab68c89ca5accc6ad9c14d11a87#file-install_container_service-sh)
 
-In case after deployment docker stop comunicate with nodes
-https://gist.github.com/carlosedp/5040f4a1b2c97c1fa260a3409b5f14f9
+In case after deployment docker stop comunicate with nodes [reset Kubernetes](https://gist.github.com/carlosedp/5040f4a1b2c97c1fa260a3409b5f14f9)
 
-https://unix.stackexchange.com/questions/128220/how-do-i-set-my-dns-when-resolv-conf-is-being-overwritten
+[Force DNS on resolv conf being overwritten](https://unix.stackexchange.com/questions/128220/how-do-i-set-my-dns-when-resolv-conf-is-being-overwritten)
