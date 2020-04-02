@@ -204,13 +204,21 @@ NFS Storageclass
     ./deploy.sh
 
 
-## Dashboard, heapster and InfluxDB
+## Step 4 - Dashboard
 
-[4-Dashboard](https://github.com/luislclt/kubernetes-arm/tree/master/4-Dashboard)
+   In the [4-Dashboard](https://github.com/luislclt/kubernetes-arm/tree/master/4-Dashboard) directory ate the 
+   
+   Be ware of the dependencie on Heapster that have been discontinued. 
 
-[5-Heapster-Influx]() Verify this not existes now.
+    cd 4-Dashboard
+    ./deploy.sh
 
-To be done.
+   You can use this technique to force determined pods to be ran only on certain nodes. It’s a matter of replacing the tag and the deployment.
+   
+    kubectl patch deployment kubernetes-dashboard -n kube-system — patch '{"spec": {"template": {"spec": {"nodeSelector": {"beta.kubernetes.io/arch": "arm64"}}}}}'
+
+
+To be done !!! validate if works, updated to the next version, that works without Heapster and InfluxDB.
 
 ## Monitoring Stack
 
