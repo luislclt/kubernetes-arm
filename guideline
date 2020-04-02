@@ -1,0 +1,58 @@
+
+sudo apt-get update -y && sudo apt-get dist-upgrade -y
+
+
+sudo nano /etc/resolvconf/resolv.conf.d/base
+
+nameserver 1.1.1.1
+nameserver 1.0.0.1
+
+sudo resolvconf -u
+
+
+
+
+192.168.1.245 application.internal.peviwatt.io
+192.168.1.245 grafana.internal.peviwatt.io
+192.168.1.245 dashboard.internal.peviwatt.io
+
+
+
+
+sudo adduser lclt
+
+sudo visudo
+
+	root    ALL=(ALL:ALL) ALL
+	newuser ALL=(ALL:ALL) ALL
+
+
+exit
+login again
+
+
+
+
+sudo deluser rock64
+
+
+
+
+Time
+
+sudo timedatectl set-timezone Europe/Lisbon
+
+
+
+ssh-keygen -t rsa -b 2048
+
+
+https://itnext.io/building-an-arm-kubernetes-cluster-ef31032636f9
+https://github.com/carlosedp/kubernetes-arm
+
+
+In case after deployment docker stop comunicate with nodes
+https://gist.github.com/carlosedp/5040f4a1b2c97c1fa260a3409b5f14f9
+
+
+https://unix.stackexchange.com/questions/128220/how-do-i-set-my-dns-when-resolv-conf-is-being-overwritten
