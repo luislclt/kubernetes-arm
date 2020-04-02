@@ -70,13 +70,7 @@ Kubernetes Deployment on Rock64Master1:
 
 	mkdir -p $HOME/.kube
 	sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-	sudo chown $(id -u):$(id -g) $HOME/.kube/config    
-	
-    Taint the master node so application pods can run on it too
-
-	(Validate this, maybe change tain config on the next tutorial)
-
-	kubectl taint nodes --all node-role.kubernetes.io/master-
+	sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 
 Kubernetes Deployment on Rock64Node's:
@@ -84,9 +78,42 @@ Kubernetes Deployment on Rock64Node's:
     Join with Rock64Master1 saved command before (Get the command from kubeadm init command on Rock64Master1)
 
 	kubeadm join --token secret.yourtoken (....)
-	
 
-In case of a failure you maybe need to reset all nodes and start Kubernetes again
+Check if every node is connected and on the same version:
+
+    > kubectl get nodes
+    
+    > uname -a
+    
+    > cat /etc/os-release
+
+Install Weave Net overlay network
+
+	kubectl apply -f “https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d ‘\n’)&env.NO_MASQ_LOCAL=1”
+	sudo curl -L git.io/weave -o /usr/local/bin/weave
+	sudo chmod a+x /usr/local/bin/weave
+
+Enable pod scheduling on Master
+
+    Taint the master node so application pods can run on it too
+    (Validate this, maybe change tain config on the next tutorial)
+    
+	kubectl taint nodes --all node-role.kubernetes.io/master-
+
+Don't forget to Enable feature gate for TTL
+
+    add the flag `- --feature-gates=TTLAfterFinished=true`
+
+    After this, wait 5 minutes for the Master pods to restart.
+
+
+Cluster Status
+
+    kubectl get nodes
+
+### In case of a failure
+
+Maybe need to reset all nodes and start Kubernetes again
 
     Drain and delete the nodes (for each node you have)
 
@@ -119,17 +146,8 @@ In case of a failure you maybe need to reset all nodes and start Kubernetes agai
 	iptables -X
 	
     systemctl restart docker
-
-
-Check if every node is connected and on the same version:
-
-    > kubectl get nodes
-    
-    > uname -a
-    
-    > cat /etc/os-release
  
-## Loadbalancer and Ingress
+## Step 3 - Loadbalancer and Ingress
 
 MetalLB 
 
@@ -144,7 +162,7 @@ Traefik
  To create the service on Kubernetes, just run the scripts and run manifests on the [2-Traefik](https://github.com/luislclt/kubernetes-arm/tree/master/2-Traefik).
 
 
-## Kubernetes storage
+## Step 4 - Kubernetes storage
 
 Do not run for now, incompleted.
 
