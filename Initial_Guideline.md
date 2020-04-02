@@ -89,7 +89,7 @@ Check if every node is connected and on the same version:
 
 Install Weave Net overlay network
 
-	kubectl apply -f “https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d ‘\n’)&env.NO_MASQ_LOCAL=1”
+	kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')&env.NO_MASQ_LOCAL=1"
 	sudo curl -L git.io/weave -o /usr/local/bin/weave
 	sudo chmod a+x /usr/local/bin/weave
 
