@@ -7,26 +7,31 @@ echo " - Docker Compose"
 echo " - Kubernetes: kubeadm, kubelet and kubectl"
 echo ""
 
-set -xeo pipefail
+set -e
 
-apt-get update -y
-apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
+curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+echo "Installing Docker."
 
-add-apt-repository \
-   "deb https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
-   $(lsb_release -cs) \
-   stable"
+echo “deb [arch=arm64] https://download.docker.com/linux/debian \
+   $(lsb_release -cs) stable” | \
+   sudo tee /etc/apt/sources.list.d/docker.list
+
+sudo apt-get update
+sudo apt-get install -y docker-compose docker-ce
+   #docker-ce=18.06.1~ce~3–0~debian 
+   #docker-ce-cli containerd.io
+
+echo "Installing Kubernetes."
+
+sudo apt-get update
+sudo apt-get install -y apt-transport-https curl
 
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
 deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 
-apt-get update -y
-apt-get install -y docker-ce docker-compose kubelet kubeadm kubectl
+sudo apt-get update -y
+sudo apt-get install -y kubelet kubeadm kubectl
+#apt-mark hold kubelet kubeadm kubectl
