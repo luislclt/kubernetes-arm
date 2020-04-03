@@ -47,5 +47,11 @@ Traefik External Ingress IP: 192.168.1.246
 <!-- - 192.168.1.246 consul.internal.peviwatt.io -->
 <!-- - 192.168.1.246 dashboard.cloud.peviwatt.io -->
 
+# proxy ssh from Master1 to Browser (Internal)
 
+   On your machine run: ` ssh -D "*:8080" username@sshd_server`
+   
+   On your browser, Network - Settings - Manual proxy configuration - SOCKS Host: localhost Port: 8080 -- Apply
+
+   use the internal.domain.com
 
