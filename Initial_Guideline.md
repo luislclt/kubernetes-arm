@@ -220,6 +220,50 @@ NFS Storageclass
 
 To be done !!! validate if works, updated to the next version, that works without Heapster and InfluxDB.
 
+## Step 5 - Metrics-server
+
+   Metrics-server is the replacement for Heapster on internal metrics. In the [5-Metrics-server](https://github.com/luislclt/kubernetes-arm/tree/master/5-Metrics-server) directory.
+   
+    cd 5-Metrics-server
+    kubectl apply -f *
+
+   Installing metrics-server allows kubectl to display some metrics in the command line:
+
+    kubectl top nodes
+    kubectl top pods
+    
+   In case of an error, check if using the kube-system pods
+    
+    kubectl -n kube-system top pods
+
+    kubectl -n kube-system get pods
+    kubectl get namespaces
+    
+## Step 6 - Helm
+
+   In the [6-Helm](https://github.com/luislclt/kubernetes-arm/tree/master/6-Helm) directory.
+   To install Helm, first the helm client is installed, after it Helm is initiated and installs the server part, Tiller into the Kubernetes server. The command first created the RBAC permissions and after initiates the server with a custom image built for ARM64. The script also tags the deployment to be scheduled on an ARM64 node.
+   
+   Install helm:
+   
+    curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+    
+   Deploy on kubernetes
+    
+    cd 6-Helm
+    ./deploy.sh
+    
+   Check this latter, helm init is deprecated !!!
+
+## Step 7 - WeaveScope
+
+   In the [7-WeaveScope](https://github.com/luislclt/kubernetes-arm/tree/master/7-WeaveScope) directory.
+   Weave Scope is a fantastic tool to visualize, monitor and inspect your cluster. You can visually go into each Pod or Container, view it’s logs, drop into the shell and much more.
+
+    cd 7-WeaveScope
+    kubectl apply -f .
+  Need some future changes.
+
 ## Monitoring Stack
 
 To be done.
